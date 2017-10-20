@@ -35,6 +35,9 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+ShareBonApp/SharebonApp/node_modules
+ShareBonApp/SharebonApp/jspm_packages
+ShareBonApp/SharebonApp/www
 
 # Typescript v1 declaration files
 typings/
