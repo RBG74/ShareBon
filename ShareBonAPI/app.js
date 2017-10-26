@@ -10,21 +10,22 @@ debug = config.debug;
 /* Database connection */
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database);
+mongoose.connect(config.database, {
+    useMongoClient: true
+});
 
+//Initialise compte Admin
 utility.createAdmin();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-/*
 //Open to cross domain requests
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-*/
 
 /* Routes */
 var logs = require('./routes/logRoutes');

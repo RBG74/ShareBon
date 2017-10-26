@@ -115,7 +115,7 @@ exports.authenticate = function(req, res, next) {
           return res.json({ success: false, message: 'Authentication failed. Wrong password.'});
         } else {
           var token = jwt.sign(user, config.secret, {
-            expiresIn: 60*60*24 // expires in 24 hours
+            expiresIn: 60*60*24 * 365 // expires in 24 hours
           });
           return res.json({ success: true,  message: 'Your token is valid for the next 24 hours.', token });
         }

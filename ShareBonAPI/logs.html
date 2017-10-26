@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    $(document).ready(function(){
+        var page = getUrlParameter('page') || 'logs';
+        if(page == 'token')
+        {
+            $.post(
+                "http://localhost:3000/users/authenticate", 
+                {username: "Admin", password: "password"}, 
+                function(data){
+                    console.log(data);
+                    $("#status").append("Status: " + data.success);
+                    $("#message").append("Message: " + data.message);
+                    $("#token").append("Token: " + data.token);
+            });
+        }
+        else if(page == 'logs')
+        {
+            $.get(
+                "http://localhost:3000/logs", 
+                {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwiX2lkIjoiNTllY2I0ZTgxNjkwMzkwODJjYTlkNWZjIiwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiaXNBZG1pbiI6ImluaXQiLCJfX3YiOiJpbml0IiwiX2lkIjoiaW5pdCJ9LCJzdGF0ZXMiOnsiaWdub3JlIjp7fSwiZGVmYXVsdCI6e30sImluaXQiOnsiX192Ijp0cnVlLCJpc0FkbWluIjp0cnVlLCJwYXNzd29yZCI6dHJ1ZSwidXNlcm5hbWUiOnRydWUsIl9pZCI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiLCJpZ25vcmUiXX0sInBhdGhzVG9TY29wZXMiOnt9LCJlbWl0dGVyIjp7ImRvbWFpbiI6bnVsbCwiX2V2ZW50cyI6e30sIl9ldmVudHNDb3VudCI6MCwiX21heExpc3RlbmVycyI6MH0sIiRvcHRpb25zIjp0cnVlfSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7ImlzQWRtaW4iOnRydWUsIl9fdiI6MCwicGFzc3dvcmQiOiIkMmEkMDUkanlNejBsM2M5Ri9RcVZObllmOUhKdWNoeWJqZUZxVzJKeHBIbUdoUEJpbTBWaWlVdEljMW0iLCJ1c2VybmFtZSI6IkFkbWluIiwiX2lkIjoiNTllY2I0ZTgxNjkwMzkwODJjYTlkNWZjIn0sIiRpbml0Ijp0cnVlLCJpYXQiOjE1MDkwMDg1NTUsImV4cCI6MTU0MDU0NDU1NX0.iiyITUBZaBrJGpud5DoUgpIdkFMIhAQND8X9Xt0TGFo'}, 
+                function(data){
+                    data.logs.forEach(function(log) {
+                        var date = new Date(log.timestamp).toLocaleDateString();
+                        var id, username = "Unlogged", isAdmin;
+                        if(log.user != null){
+                            id = log.user._id;
+                            username = log.user.username;
+                            isAdmin = log.user.isAdmin;
+                        }
+                        $("#logs ul").append(
+                            "<li><p>" +
+                                "Date: " + date + "<br/>" +
+                                "Requete: " + log.method + " " + log.route + "<br/>" +
+                                "User: " + username +
+                            "</p></li>");
+                    });
+            }); 
+        }
+    });
+</script>
+</head>
+<body>
+
+    <h1>Testing realm</h1>
+    <div id="token">
+        <p id="status"></p>
+        <p id="message"></p>
+        <p id="token"></p>
+    </div>
+    <div id="logs">
+        <ul></ul>
+    </div>
+
+</body>
+</html>
