@@ -68,6 +68,7 @@ exports.createAdmin = function(){
         } 
         if(!admin){
             new User({ 
+                email: config.adminEmail,
                 username: config.adminLogin, 
                 password: config.adminPassword,
                 isAdmin: true 

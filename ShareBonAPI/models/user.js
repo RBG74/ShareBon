@@ -24,6 +24,11 @@ userSchema = new Schema({
     }
 });
 
+userSchema.path('email').validate(function (email) {
+    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailRegex.test(email);
+ }, 'The email field is either incorrect or empty.')
+
 userSchema.methods.encryptPassword = function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
 };
