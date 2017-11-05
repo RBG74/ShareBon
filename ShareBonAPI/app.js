@@ -1,6 +1,7 @@
 var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
+var fileUpload = require('express-fileupload');
 
 var config = require('./config');
 var utility = require('./utility');
@@ -19,6 +20,8 @@ utility.createAdmin();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(fileUpload());
 
 //Open to cross domain requests
 app.use(function(req, res, next) {

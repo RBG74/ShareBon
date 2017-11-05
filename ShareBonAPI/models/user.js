@@ -9,10 +9,13 @@ userSchema = new Schema({
         required: true,
         unique: true
     },
-    username: {
+    firstname: {
         type: String,
-        required: true,
-        unique: true
+        required: true
+    },
+    lastname: {
+        type: String,
+        required: true
     },
     password: {
         type: String,
@@ -21,9 +24,20 @@ userSchema = new Schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    phone: [{
+        countryCode: String,
+        phoneNumber: String
+    }],
+    minibio: {
+        type: String
+    },
+    profilePictureUrl: {
+        type: String
     }
 });
 
+/* Validations */
 userSchema.path('email').validate(function (email) {
     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     return emailRegex.test(email);

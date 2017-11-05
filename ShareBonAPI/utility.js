@@ -62,14 +62,15 @@ exports.createAdmin = function(){
     if(debug) console.log('[debug]utility, createAdmin');
 
     var User = require('./models/user');
-    User.findOne({ 'username': 'Admin' }, function (err, admin) {
+    User.findOne({ 'email': config.adminEmail }, function (err, admin) {
         if(err){
             return next(err);
         } 
         if(!admin){
             new User({ 
                 email: config.adminEmail,
-                username: config.adminLogin, 
+                firstname: config.adminFirstName, 
+                lastname: config.adminLastName, 
                 password: config.adminPassword,
                 isAdmin: true 
             }).save(function(err) {

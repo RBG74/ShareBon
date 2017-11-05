@@ -8,6 +8,16 @@ exports.create = function(req, res, next) {
 
   var new_user = new User(req.body);
   new_user.isAdmin = false;
+  if (req.files){
+    var file = req.files.profilePicture;
+    var path = 'assets/profilePictures/' + new_user._id + '.jpg';
+    file.mv(path, function(err) {
+      if (err)
+        return next(err);
+      new_user.profilePictureUrl = path;
+    });
+  }
+
   new_user.save(function(err, user) {
       if(err){
         return next(err);
