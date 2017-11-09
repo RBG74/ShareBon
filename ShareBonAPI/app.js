@@ -13,15 +13,12 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database, {
     useMongoClient: true
-});
-
-//Initialise compte Admin
-utility.createAdmin();
+}).then(utility.initAdmin()); 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.use(fileUpload());
+app.use( "/assets/profilePictures", [ /*utility.isAuth,*/ express.static( __dirname + "/assets/profilePictures" ) ] );
 
 //Open to cross domain requests
 app.use(function(req, res, next) {
@@ -41,15 +38,15 @@ var users = require('./routes/userRoutes');
 app.use('/users', users);
 
 /* Error handling */
-app.use(function(err, req, res, next) {
-    if(err){
+app.use(function(error, req, res, next) {
+    if(error){
         res.status(err.status||500).send({ success: false, message: err.message });
         console.log("We no good:");
-        console.log(err);
+        console.log(error);
     } else {
         console.log("We good");
     }
 });
 
-var port = process.env.PORT || 3000;
-app.listen(port);
+var port = config.port;
+app.listen(port, console.log('App successfully started!'));

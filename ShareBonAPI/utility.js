@@ -1,15 +1,15 @@
 var jwt = require('jsonwebtoken');
 var config   = require('./config');
 
-/* callback(err, (decodedToken)) */
+/* callback(error, (decodedToken)) */
 var readToken = function(req, callback){
-    if(debug) console.log('[debug]utility, readToken');
+    if(debug.utility) console.log('[debug]utility, readToken');
     
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if(token){
-        jwt.verify(token, config.secret, function(err, decoded){
-            if(err){
-                return callback(err);
+        jwt.verify(token, config.secret, function(error, decoded){
+            if(error){
+                return callback(error);
             } else {
                 return callback(null, decoded);
             }
@@ -20,11 +20,11 @@ var readToken = function(req, callback){
 };
 
 exports.isAuth = function(req, res, next){
-    if(debug) console.log('[debug]utility, isAuth');
+    if(debug.utility) console.log('[debug]utility, isAuth');
 
-    readToken(req, function(err, token){
-        if(err){
-            return next(err);
+    readToken(req, function(error, token){
+        if(error){
+            return next(error);
         } else if(!token){
             return res.status(403).send({ 
                 success: false, 
@@ -52,51 +52,57 @@ exports.isAuth = function(req, res, next){
 };
 
 exports.isAdmin = function(req, res, next){
-    if(debug) console.log('[debug]utility, isAdmin');
+    if(debug.utility) console.log('[debug]utility, isAdmin');
 
     req.wantAdminToken = true;
     exports.isAuth(req, res, next);
 };
 
-exports.createAdmin = function(){
-    if(debug) console.log('[debug]utility, createAdmin');
+exports.initAdmin = function(){
+    if(debug.utility) console.log('[debug]utility, createAdmin');
 
     var User = require('./models/user');
-    User.findOne({ 'email': config.adminEmail }, function (err, admin) {
-        if(err){
-            return next(err);
-        } 
-        if(!admin){
-            new User({ 
-                email: config.adminEmail,
-                firstname: config.adminFirstName, 
-                lastname: config.adminLastName, 
-                password: config.adminPassword,
-                isAdmin: true 
-            }).save(function(err) {
-                if (err) throw err;
-            });
-        }
-    });
+    User.findOne({ 'email': config.adminEmail })
+        .exec()
+        .then(function (admin) {
+            if(!admin){
+                new User({ 
+                    email: config.adminEmail,
+                    name: {
+                        first: config.adminFirstName,
+                        last: config.adminLastName
+                    },
+                    password: config.adminPassword,
+                    isAdmin: true 
+                }).save(function(error) {
+                    if(error){
+                        throw error;
+                    }
+                });
+            }
+        })
+        .catch(function(error){
+            throw error;
+        });
 };
 
 exports.handleLog = function(req, res, next){
-    if(debug) console.log('[debug]utility, handleLog');
+    if(debug.utility) console.log('[debug]utility, handleLog');
 
     var Log = require('./models/log');
 
-    readToken(req, function(err, token){
+    readToken(req, function(error, token){
         var log = new Log({ method: req.method, route: req.url });
         if(token){
             log.user = token._doc._id;
         } else {
             log.user = null;
         }
-        log.save(function(err){
-            if(err){
-                return next(err);
+        log.save(function(error){
+            if(error){
+                return next(error);
             }
-            if(debug) console.log('[debug]utility, handleLog, log saved');
+            if(debug.utility) console.log('[debug]utility, handleLog, log saved');
             return next();
         });
     });

@@ -2,20 +2,22 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
-//TODO: Completer la classe
 userSchema = new Schema({
     email: {
         type: String,
         required: true,
         unique: true
     },
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
-        type: String,
-        required: true
+    name: {
+        _id: false,
+        first: {
+            type: String,
+            required: true
+        },
+        last: {
+            type: String,
+            required: true
+        }
     },
     password: {
         type: String,
@@ -25,10 +27,11 @@ userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    phone: [{
+    phone: {
+        _id: false,
         countryCode: String,
-        phoneNumber: String
-    }],
+        number: String
+    },
     minibio: {
         type: String
     },
@@ -55,5 +58,15 @@ userSchema.pre('save', function(next) {
     this.password = this.encryptPassword(this.password);
     next();
 });
+
+/*
+userSchema.post('find', function(users) {
+    for(var i=0, l=users.length; i<l; i++){
+        var user = users[i];
+        if(typeof user.profilePictureUrl !== 'undefined')
+            user.profilePictureUrl = config.host + user.profilePictureUrl
+    };
+});*/
+
 
 module.exports = mongoose.model('User', userSchema);
