@@ -3,10 +3,12 @@ module.exports = {
     'host': 'http://localhost:3000/',
     'secret': 'jeanpayesonmetre',
     'database': 'mongodb://localhost:27017/sharebon',
-    'adminEmail': 'administrateur@yopmail.com',
-    'adminFirstName': 'Admin',
-    'adminLastName': 'Istrateur',
-    'adminPassword': 'password',
+    'admin': {
+        'email': 'remy.bernardgranger@ynov.com',
+        'firstName': 'Rémy',
+        'lastName': 'Bernard-Granger',
+        'password': 'password'
+    },
     'debug': {
         'utility': false,
         'log': false,

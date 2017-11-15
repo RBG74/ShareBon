@@ -40,7 +40,7 @@ app.use('/users', users);
 /* Error handling */
 app.use(function(error, req, res, next) {
     if(error){
-        res.status(err.status||500).send({ success: false, message: err.message });
+        res.status(error.status||500).send({ success: false, message: error.message });
         console.log("We no good:");
         console.log(error);
     } else {

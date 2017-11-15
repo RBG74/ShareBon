@@ -31,22 +31,34 @@ exports.isAuth = function(req, res, next){
                 message: 'No token provided.'
             });
         } else {
-            //We have a token, do we need an admin?
-            if(!req.wantAdminToken){
-                //We just need a token, let them pass
-                req.decoded = token;
-                return next();
-            } else {
-                if(token._doc.isAdmin){
-                    req.decoded = token;
-                    return next();
-                } else {
+            var User = require('./models/user');
+            User.findOne({ 'email': token._doc.email }).exec()
+            .then(function (user) {
+                if(user == null){
                     return res.status(403).send({
                         success: false,
-                        message: 'You need an admin token.'
+                        message: 'The user corresponding to this token has been deleted.'
                     });
                 }
-            }
+                else{
+                    //We have a token, do we need an admin?
+                    if(!req.wantAdminToken){
+                        //We just need a token, let them pass
+                        req.decoded = token;
+                        return next();
+                    } else {
+                        if(token._doc.isAdmin){
+                            req.decoded = token;
+                            return next();
+                        } else {
+                            return res.status(403).send({
+                                success: false,
+                                message: 'You need an admin token.'
+                            });
+                        }
+                    }
+                }
+            });
         }
     });
 };
@@ -62,22 +74,23 @@ exports.initAdmin = function(){
     if(debug.utility) console.log('[debug]utility, createAdmin');
 
     var User = require('./models/user');
-    User.findOne({ 'email': config.adminEmail })
+    User.findOne({ 'email': config.admin.email })
         .exec()
         .then(function (admin) {
             if(!admin){
                 new User({ 
-                    email: config.adminEmail,
+                    email: config.admin.email,
                     name: {
-                        first: config.adminFirstName,
-                        last: config.adminLastName
+                        first: config.admin.firstName,
+                        last: config.admin.lastName
                     },
-                    password: config.adminPassword,
+                    password: config.admin.password,
                     isAdmin: true 
                 }).save(function(error) {
                     if(error){
                         throw error;
                     }
+                    console.log('Admin user created.');
                 });
             }
         })
