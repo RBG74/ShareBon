@@ -31,11 +31,11 @@ exports.create = function(req, res, next) {
         return next(error);
       new_user.profilePictureUrl = config.host + path;
       new_user.save(function(error, user) {
-        if(error){
-          return next(error);
-        }
-        return res.json({success: true, message: "The user was sucessfully created."});
-    });
+          if(error){
+            return next(error);
+          }
+          return res.json({success: true, message: "The user was sucessfully created."});
+      });
     });
   }
 };
@@ -134,6 +134,7 @@ exports.update_one = function(req, res, next) {
       loggedUser.minibio = req.body.minibio;
       isUpdated = true;
     }
+    //TODO: handle profile pic change
 
     if(isUpdated){
       loggedUser.isNew = false;
@@ -167,6 +168,7 @@ exports.delete_one = function(req, res, next) {
         if(error){
           return next(error);
         }
+        //TODO: remove image file
         return res.json({success: true, message: "The user was sucessfully deleted."});
       });
     } 
