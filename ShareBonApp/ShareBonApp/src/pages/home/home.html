@@ -1,53 +1,44 @@
+<header-partial></header-partial>
 
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle start>
-        <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-
-    <h2 class="center">Ionic Tabs Starter</h2>
-
-   <div class="center">
-        <p class="ionic-logo"></p>
+<ion-content>
+    <div style="margin-top : 33%; text-align : center;">
+        <ion-badge>V&eacute;g&eacute;tarien</ion-badge>
+        <ion-badge>V&eacute;gan</ion-badge>
+        <ion-badge>Halal</ion-badge>
+        <ion-badge>Chaud</ion-badge>
+        <ion-badge>Froid</ion-badge>
+        <ion-badge>Dessert</ion-badge>
     </div>
-
-    <ion-card>
-        <ion-card-header>
-            Docs are here to help
-        </ion-card-header>
-
-        <ion-list>
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820516')">
-                <ion-icon name="jet" item-left></ion-icon>
-                Getting Started
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820761')">
-                <ion-icon name="ionic" item-left></ion-icon>
-                Ionic Framework
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820520')">
-                <ion-icon name="thunderstorm" item-left></ion-icon>
-                Azure Services
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820524')">
-                <ion-icon name="cafe" item-left></ion-icon>
-                Plugins Support
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820526')">
-                <ion-icon name="paw" item-left></ion-icon>
-                Troubleshooting
-            </button>
-        </ion-list>
-        
-    </ion-card>
-
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <ion-card>
+                    <img src="../../assets/images/card-saopaolo.png" />
+                    <div class="card-title">So Paulo</div>
+                    <div class="card-subtitle"><ion-icon name="star"></ion-icon></div>
+                </ion-card>
+            </ion-col>
+            <ion-col col-6>
+                <ion-card>
+                    <img src="../../assets/images/card-amsterdam.png" />
+                    <div class="card-title">Amsterdam</div>
+                    <div class="card-subtitle">64 Listings</div>
+                </ion-card>
+            </ion-col>
+            <ion-col col-6>
+                <ion-card>
+                    <img src="../../assets/images/card-sf.png" />
+                    <div class="card-title">San Francisco</div>
+                    <div class="card-subtitle">72 Listings</div>
+                </ion-card>
+            </ion-col>
+            <ion-col col-6>
+                <ion-card>
+                    <img src="../../assets/images/card-madison.png" />
+                    <div class="card-title">Madison</div>
+                    <div class="card-subtitle">28 Listings</div>
+                </ion-card>
+            </ion-col>
+</ion-row>
+    </ion-grid>
 </ion-content>

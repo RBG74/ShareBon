@@ -1,10 +1,18 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
+//Boot
 import { MyApp } from './app.component';
+
+//Pages
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+
+//Partials
+import { TabsPartialComponent } from '../components/tabs-partial/tabs-partial';
+import { HeaderPartialComponent } from '../components/header-partial/header-partial';
+
 
 @NgModule({
   declarations: [
@@ -12,7 +20,7 @@ import { TabsPage } from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    HeaderPartialComponent
   ],
   imports: [
        IonicModule.forRoot(MyApp, {tabsHideOnSubPages: true })
@@ -23,8 +31,10 @@ import { TabsPage } from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    HeaderPartialComponent
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }]
+  providers: [
+      { provide: ErrorHandler, useClass: IonicErrorHandler }
+  ]
 })
 export class AppModule {}

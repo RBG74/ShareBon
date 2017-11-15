@@ -1,0 +1,32 @@
+header-partial {
+
+    $white_color : white;
+    $main_color : #263649;
+
+    .navbar_header{
+
+        background-color : $white_color;
+
+         img{
+        width : 80%;
+        margin-left : 15%;
+        }
+         .toolbar-background{
+             background-color : rgba(255,255,255,0);
+         }
+
+         button{
+             position : absolute;
+             margin : 0;
+         }
+
+         .bar-button-default{
+             color : $main_color;
+         }
+
+         ion-navbar{
+             margin-top : -40px;
+         }
+    }
+
+}
