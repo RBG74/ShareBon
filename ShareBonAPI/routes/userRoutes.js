@@ -7,8 +7,8 @@ var utility = require('../utility');
 router.post('/', userController.create);
 router.get('/', utility.isAuth, userController.read_all);
 router.get('/:id', utility.isAuth, userController.read_one);
-router.patch('/updatepw/:newpassword', utility.isAuth, userController.update_password);
-router.delete('/:id', utility.isAdmin, userController.delete_one);
+router.patch('/:id', utility.isAuth, userController.update_one);
+router.delete('/:id', utility.isAuth, userController.delete_one);
 
 router.post('/authenticate', userController.authenticate);
 

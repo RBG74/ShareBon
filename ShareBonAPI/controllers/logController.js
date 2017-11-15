@@ -4,11 +4,11 @@ var jwt      = require('jsonwebtoken');
 var config   = require('../config');
 
 exports.read_all = function(req, res, next) {
-  if(debug) console.log('[debug]logController, read_all');
+  if(debug.log) console.log('[debug]logController, read_all');
 
-  Log.find().populate('user', 'username isAdmin').exec(function(err, logs) {
-    if(err){
-      return next(err);
+  Log.find().populate('user', 'email isAdmin').exec(function(error, logs) {
+    if(error){
+      return next(error);
     }
     if(logs[0]){
       return res.json({success: true, logs});
@@ -19,13 +19,13 @@ exports.read_all = function(req, res, next) {
 };
 
 exports.read_one = function(req, res, next) {
-  if(debug) console.log('[debug]logController, read_one');
+  if(debug.log) console.log('[debug]logController, read_one');
 
   var id = req.params.id;
-  if(mongoose.Types.ObjectId.isValid(id)){
-    Log.findById(id).populate('user', 'username isAdmin').exec(function(err, log) {
-      if(err){
-        return next(err);
+  if(typeof id !== 'undefined'){
+    Log.findById(id).populate('user', 'email isAdmin').exec(function(error, log) {
+      if(error){
+        return next(error);
       }
       if(log){
         return res.json({success: true, log});
@@ -34,18 +34,18 @@ exports.read_one = function(req, res, next) {
       }
     });
   } else {
-    return res.json({sucess: false, message: 'Parameter needs to be an id.'});
+    return res.json({sucess: false, message: 'No id parameter.'});
   }
 };
 
 exports.read_by_user = function(req, res, next) {
-  if(debug) console.log('[debug]logController, read_by_user');
+  if(debug.log) console.log('[debug]logController, read_by_user');
 
   var userid = req.params.id;
-  if(mongoose.Types.ObjectId.isValid(id)){
-    Log.find({user: userid}).populate('user', 'username isAdmin').exec(function(err, logs) {
-      if(err){
-        return next(err);
+  if(typeof id !== 'undefined'){
+    Log.find({user: userid}).populate('user', 'email isAdmin').exec(function(error, logs) {
+      if(error){
+        return next(error);
       }
       if(logs[0]){
         return res.json({success: true, logs});
@@ -54,39 +54,39 @@ exports.read_by_user = function(req, res, next) {
       }
     });
   } else {
-    return res.json({sucess: false, message: 'Parameter needs to be an id.'});
+    return res.json({sucess: false, message: 'No id parameter.'});
   }
 };
 
 exports.delete_one = function(req, res, next) {
-  if(debug) console.log('[debug]logController, delete_one');
+  if(debug.log) console.log('[debug]logController, delete_one');
 
   var id = req.params.id;
-  if(mongoose.Types.ObjectId.isValid(id)){
-    Log.findByIdAndRemove(id, function(err){
-      if(err){
-        return next(err);
+  if(typeof id !== 'undefined'){
+    Log.findByIdAndRemove(id, function(error){
+      if(error){
+        return next(error);
       }
       return res.json({success: true, message: "The log was sucessfully deleted."});
     });
   } else {
-    return res.json({sucess: false, message: 'Parameter needs to be an id.'});
+    return res.json({sucess: false, message: 'No id parameter.'});
   }
 };
 
 exports.delete_by_user = function(req, res, next) {
-  if(debug) console.log('[debug]logController, delete_by_user');
+  if(debug.log) console.log('[debug]logController, delete_by_user');
 
   var userid = req.params.id;
   if(mongoose.Types.ObjectId.isValid(userid)){
-    Log.remove({ 'user': userid }, function(err, removed){
-      if(err){
-        return next(err);
+    Log.remove({ 'user': userid }, function(error, removed){
+      if(error){
+        return next(error);
       } else {
         return res.json({ success: true, message: 'This user\'s logs were successfully deleted.', removed: removed.result.n });
       }
     });
   } else {
-    return res.json({sucess: false, message: 'Parameter needs to be an id.'});
+    return res.json({sucess: false, message: 'No id parameter.'});
   }
 };
