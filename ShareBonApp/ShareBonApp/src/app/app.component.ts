@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { Splashscreen } from 'ionic-native'; 
-import { StatusBar } from 'ionic-native';
-
+import { StatusBar, Splashscreen } from 'ionic-native'; 
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -29,10 +27,11 @@ export class MyApp {
   }
   initializeApp() {
       this.platform.ready().then(() => {
+          StatusBar.hide();
           Splashscreen.hide();
       });
       // let status bar overlay webview
-      StatusBar.hide();
+      
   }
 
   openPage(page) {
