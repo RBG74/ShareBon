@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { Splashscreen } from 'ionic-native'; 
+import { StatusBar } from '@ionic-native/status-bar';
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -16,8 +18,8 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;  
 
-  constructor(public platform: Platform) {
-    this.initializeApp();
+  constructor(public platform: Platform, private statusBar: StatusBar) {
+      this.initializeApp();
     this.pages = [
         { title: 'Home', component: HomePage },
         { title: 'About', component: AboutPage },
@@ -27,9 +29,11 @@ export class MyApp {
   }
   initializeApp() {
       this.platform.ready().then(() => {
-          // Okay, so the platform is ready and our plugins are available.
-          // Here you can do any higher level native things you might need.
-          StatusBar.styleDefault();
+          // let status bar overlay webview
+          this.statusBar.overlaysWebView(true);
+
+          // set status bar to white
+          this.statusBar.backgroundColorByHexString('#ffffff');
           Splashscreen.hide();
       });
   }

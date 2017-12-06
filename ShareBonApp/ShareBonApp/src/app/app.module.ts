@@ -1,5 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+
 
 //Boot
 import { MyApp } from './app.component';
@@ -34,7 +36,8 @@ import { HeaderPartialComponent } from '../components/header-partial/header-part
     HeaderPartialComponent
   ],
   providers: [
-      { provide: ErrorHandler, useClass: IonicErrorHandler }
+      { provide: ErrorHandler, useClass: IonicErrorHandler },
+      StatusBar
   ]
 })
 export class AppModule {}

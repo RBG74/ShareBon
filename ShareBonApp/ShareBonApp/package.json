@@ -20,6 +20,7 @@
     "@angular/platform-browser": "2.4.8",
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/platform-server": "2.4.8",
+    "@ionic-native/status-bar": "^4.4.2",
     "@ionic/storage": "2.0.0",
     "ionic-angular": "2.2.0",
     "ionic-native": "2.4.1",
@@ -43,6 +44,8 @@
   ],
   "cordovaPlatforms": [],
   "-vs-binding": {
-    "BeforeBuild": [ "ionic:build" ]
+    "BeforeBuild": [
+      "ionic:build"
+    ]
   }
 }
