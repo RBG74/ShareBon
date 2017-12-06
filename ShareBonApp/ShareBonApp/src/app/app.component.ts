@@ -29,13 +29,13 @@ export class MyApp {
   }
   initializeApp() {
       this.platform.ready().then(() => {
-          // let status bar overlay webview
-          this.statusBar.overlaysWebView(true);
-
-          // set status bar to white
-          this.statusBar.backgroundColorByHexString('#ffffff');
           Splashscreen.hide();
       });
+      // let status bar overlay webview
+      this.statusBar.overlaysWebView(true);
+
+      // set status bar to white
+      this.statusBar.backgroundColorByHexString('#ffffff');
   }
 
   openPage(page) {
@@ -43,4 +43,5 @@ export class MyApp {
       // we wouldn't want the back button to show in this scenario
       this.nav.setRoot(page.component);
   }
+
 }
