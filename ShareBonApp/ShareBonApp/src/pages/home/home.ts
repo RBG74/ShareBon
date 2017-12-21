@@ -11,9 +11,5 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
   }
-  
-  onLink(url: string) {
-      window.open(url);
-  }
 
 }
