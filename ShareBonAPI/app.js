@@ -37,6 +37,9 @@ app.use(utility.handleLog);
 var users = require('./routes/userRoutes');
 app.use('/users', users);
 
+var adverts = require('./routes/advertRoutes');
+app.use('/adverts', adverts);
+
 /* Error handling */
 app.use(function(error, req, res, next) {
     if(error){

@@ -12,6 +12,7 @@ module.exports = {
     'debug': {
         'utility': false,
         'log': false,
-        'user': true
+        'user': true,
+        'advert': true,
     }
 };
