@@ -4,6 +4,10 @@
     <ReferenceCachePath>C:\Users\valen\AppData\Local\Temp\ShareBonApp_refcache</ReferenceCachePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|iOS'">
-    <DebuggerFlavor>iOSEmulatoriPhone6S</DebuggerFlavor>
+    <DebuggerFlavor>iOSLocalDevice</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
+    <DebuggerFlavor>RippleNexus</DebuggerFlavor>
+    <AndroidEmulatorID>AndroidEmulator;Émulateur Google Android</AndroidEmulatorID>
   </PropertyGroup>
 </Project>

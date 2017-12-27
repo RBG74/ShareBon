@@ -1,0 +1,17 @@
+
+@font-face {
+    font-family: 'FRSCRIPT';
+    src: url('../assets/fonts/FRSCRIPT.eot') format('embedded-opentype');
+}
+@font-face {
+    font-family: 'FRSCRIPT';
+    src: url('../assets/fonts/FRSCRIPT.svg') format('svg');
+}
+@font-face {
+    font-family: 'FRSCRIPT';
+    src: url('../assets/fonts/FRSCRIPT.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'FRSCRIPT';
+    src: url('../assets/fonts/FRSCRIPT.woff') format('woff');
+}

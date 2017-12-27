@@ -1,6 +1,38 @@
-<header-partial></header-partial>
+<link href="../../assets/fonts/FRSCRIPT.css" rel="stylesheet" />
+<ion-header>
+    
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">Close</button>
+        </ion-buttons>
+        <ion-title>Login</ion-title>
+    </ion-navbar>
+
+</ion-header>
 
 
 <ion-content padding>
+
+    <ion-list>
+
+        <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Mot de passe</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+
+    </ion-list>
+
+    <div padding>
+        <button ion-button block (click)="dismiss()">Se connecter</button>
+    </div>
+
+    <div padding>
+        <button ion-button block clear (click)="navigateToRegister()">S'inscrire</button>
+    </div>
 
 </ion-content>
