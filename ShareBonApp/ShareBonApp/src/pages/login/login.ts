@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { RegisterPage } from '../register/register';
 
 @Component({
   selector: 'page-login',
@@ -7,6 +8,13 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+    constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) { }
 
+  dismiss() {
+      this.viewCtrl.dismiss();
+  }
+
+  navigateToRegister(){
+  	this.navCtrl.push(RegisterPage);
+  }
 }

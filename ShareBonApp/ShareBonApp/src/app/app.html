@@ -6,12 +6,14 @@
     </ion-header>
 
     <ion-content>
+
+        <img menuClose class="logo_menu" src="assets/images/Logo Sharebon.png" (click)="navigateToHome()" />
+
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
                 {{p.title}}
             </button>
         </ion-list>
-        <img class="logo_menu" src="assets/images/Logo Sharebon.png" />
     </ion-content>
 
 </ion-menu>
