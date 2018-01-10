@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Schema   = mongoose.Schema;
+var config   = require('../config');
+var fs       = require('fs');
 
 advertSchema = new Schema({
     title: {
@@ -25,6 +27,19 @@ advertSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
+    }
+});
+
+advertSchema.pre('remove', function(next) {
+    var pictures = this.picturesUrls;
+    for (var i = 0, len = pictures.length; i < len; i++) {
+        var imagePath = pictures[i].replace(config.host, '');
+        fs.unlink(imagePath, function(unlinkError) {
+        if (unlinkError && unlinkError.errno != -4058)
+            next(unlinkError);
+        else
+            next();
+        });
     }
 });
 

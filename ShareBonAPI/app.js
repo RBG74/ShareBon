@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use( "/assets/profilePictures", [ /*utility.isAuth,*/ express.static( __dirname + "/assets/profilePictures" ) ] );
+app.use( "/assets/advertPictures", [ /*utility.isAuth,*/ express.static( __dirname + "/assets/advertPictures" ) ] );
 
 //Open to cross domain requests
 app.use(function(req, res, next) {

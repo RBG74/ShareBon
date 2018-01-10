@@ -141,6 +141,7 @@ exports.update_one = function(req, res, next) {
             var file = req.files.profilePicture;
             var a = file.name.split('.');
             var extension = '.' + a[a.length-1];
+            extension = ".png";
             var path = 'assets/profilePictures/' + targetUser._id + extension;
             fs.unlink(path, function(unlinkError) {
               if (unlinkError && unlinkError.errno != -4058)
@@ -197,8 +198,12 @@ exports.delete_one = function(req, res, next) {
           return next(error);
         }
         var p = user.profilePictureUrl.replace(config.host, '');
-        fs.unlink(p);
-        return res.json({success: true, message: "The user was sucessfully deleted."});
+        fs.unlink(p, function(unlinkError) {
+          if (unlinkError && unlinkError.errno != -4058)
+            return next(unlinkError);
+          else
+            return res.json({success: true, message: "The user was sucessfully deleted."});
+        });
       });
     } 
     else {
