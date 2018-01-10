@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, NavController, ModalController } from 'ionic-angular';
+import { Nav, Platform, NavController/*, ModalController */} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
+//import { LoginPage } from '../pages/login/login';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;  
 
-  constructor(public platform: Platform, private modalCtrl: ModalController) {
+  constructor(public platform: Platform/*, private modalCtrl: ModalController*/) {
       this.initializeApp();
     //  this.showLoginModal();
     this.pages = [
@@ -34,10 +34,10 @@ export class MyApp {
       
   }
 
-  showLoginModal() {
+ /* showLoginModal() {
       let modal = this.modalCtrl.create(LoginPage);
       modal.present();
-  }
+  }*/
 
 
 
