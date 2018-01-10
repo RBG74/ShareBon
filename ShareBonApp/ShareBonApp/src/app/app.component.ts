@@ -17,9 +17,9 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;  
 
-  constructor(public platform: Platform/*, private modalCtrl: ModalController*/) {
+  constructor(public platform: Platform, private modalCtrl: ModalController) {
       this.initializeApp();
-    //  this.showLoginModal();
+      this.showLoginModal();
     this.pages = [
         { title: 'Home', component: HomePage },
         { title: 'About', component: AboutPage },
@@ -34,10 +34,10 @@ export class MyApp {
       
   }
 
- /* showLoginModal() {
+  showLoginModal() {
       let modal = this.modalCtrl.create(LoginPage);
       modal.present();
-  }*/
+  }
 
 
 
