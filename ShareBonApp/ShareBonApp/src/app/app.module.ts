@@ -24,9 +24,9 @@ import { HeaderPartialComponent } from '../components/header-partial/header-part
     AboutPage,
     ContactPage,
     HomePage,
-    HeaderPartialComponent/*, 
+    HeaderPartialComponent, 
     LoginPage,
-    RegisterPage*/
+    RegisterPage
   ],
   imports: [
        IonicModule.forRoot(MyApp, {tabsHideOnSubPages: true })
@@ -37,9 +37,9 @@ import { HeaderPartialComponent } from '../components/header-partial/header-part
     AboutPage,
     ContactPage,
     HomePage,
-    HeaderPartialComponent/*,
+    HeaderPartialComponent,
     LoginPage,
-    RegisterPage*/
+    RegisterPage
   ],
   providers: [
       { provide: ErrorHandler, useClass: IonicErrorHandler },
