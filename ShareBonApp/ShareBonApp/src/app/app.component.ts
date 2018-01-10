@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, NavController/*, ModalController */} from 'ionic-angular';
+import { Nav, Platform, NavController, ModalController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { AboutPage } from '../pages/about/about';
