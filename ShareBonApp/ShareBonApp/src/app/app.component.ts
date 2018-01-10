@@ -19,7 +19,7 @@ export class MyApp {
 
   constructor(public platform: Platform, private modalCtrl: ModalController) {
       this.initializeApp();
-      this.showLoginModal();
+    //  this.showLoginModal();
     this.pages = [
         { title: 'Home', component: HomePage },
         { title: 'About', component: AboutPage },
@@ -36,7 +36,7 @@ export class MyApp {
   }
 
   showLoginModal() {
-      let modal = this.modalCtrl.create(ContactPage);
+      let modal = this.modalCtrl.create(LoginPage);
       modal.present();
   }
 

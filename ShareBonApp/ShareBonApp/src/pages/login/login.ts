@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 
 @Component({
@@ -8,7 +8,7 @@ import { RegisterPage } from '../register/register';
 })
 export class LoginPage {
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) { }
+    constructor(public navCtrl: NavController, public viewCtrl: ViewController) { }
 
   dismiss() {
       this.viewCtrl.dismiss();
