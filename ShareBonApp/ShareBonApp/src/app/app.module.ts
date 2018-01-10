@@ -10,8 +10,8 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-//import { LoginPage } from '../pages/login/login';
-//import { RegisterPage } from '../pages/register/register';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 //Partials
 import { TabsPartialComponent } from '../components/tabs-partial/tabs-partial';
