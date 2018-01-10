@@ -24,6 +24,7 @@ import { HeaderPartialComponent } from '../components/header-partial/header-part
     AboutPage,
     ContactPage,
     HomePage,
+    RegisterPage,
     HeaderPartialComponent
   ],
   imports: [
@@ -35,6 +36,7 @@ import { HeaderPartialComponent } from '../components/header-partial/header-part
     AboutPage,
     ContactPage,
     HomePage,
+    RegisterPage,
     HeaderPartialComponent
   ],
   providers: [
