@@ -38,6 +38,7 @@ jspm_packages/
 ShareBonApp/SharebonApp/node_modules
 ShareBonApp/SharebonApp/jspm_packages
 ShareBonApp/SharebonApp/www
+ShareBonApp/SharebonApp/platforms
 
 # Typescript v1 declaration files
 typings/
