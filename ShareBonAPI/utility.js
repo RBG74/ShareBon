@@ -1,7 +1,6 @@
 var jwt = require('jsonwebtoken');
 var config   = require('./config');
 
-/* callback(error, (decodedToken)) */
 var readToken = function(req, callback){
     if(debug.utility) console.log('[debug]utility, readToken');
     

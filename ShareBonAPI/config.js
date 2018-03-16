@@ -12,6 +12,8 @@ module.exports = {
     'debug': {
         'utility': false,
         'log': false,
-        'user': true
-    }
+        'user': false,
+        'advert': true,
+    },
+    'tokenDuration': 60*60*24 * 365 // 1 an
 };
