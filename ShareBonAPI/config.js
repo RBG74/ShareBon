@@ -14,5 +14,6 @@ module.exports = {
         'log': false,
         'user': false,
         'advert': true,
-    }
+    },
+    'tokenDuration': 60*60*24 * 365 // 1 an
 };

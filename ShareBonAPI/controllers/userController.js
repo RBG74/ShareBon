@@ -211,7 +211,7 @@ exports.delete_one = function(req, res, next) {
     }
   }
   else{
-    return res.json({success: true, message: 'The user wasn\'t updated, no useful data was provided.'});
+    return res.json({success: true, message: 'The user wasn\'t deleted, you have to be logged as the user in question or as admin.'});
   }
 };
 
@@ -234,8 +234,7 @@ exports.authenticate = function(req, res, next) {
         } 
         else {
           var token = jwt.sign(user, config.secret, {
-            //expiresIn: 60*60*24 // expires in 24 hours
-            expiresIn: 60*60*24 * 365 // expires in a year
+            expiresIn: config.tokenDuration
           });
           return res.json({ success: true,  message: 'Your token is valid for the next 24 hours.', token });
         }

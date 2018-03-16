@@ -65,3 +65,4 @@ typings/
 ShareBonAPI/node_modules
 ShareBonAPI/package-lock.json
 ShareBonAPI/assets/profilePictures
+ShareBonAPI/assets/advertPictures
